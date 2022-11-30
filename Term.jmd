@@ -1,6 +1,6 @@
 ```julia
 using JuMP
-using Cbc
+using HiGHS
 
 
 # identify decision variables
