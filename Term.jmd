@@ -1,7 +1,6 @@
 ```julia
 using JuMP
 using HiGHS
-<<<<<<< HEAD
 using Plots
 gr()
 using DataFrames
@@ -15,18 +14,17 @@ cost = [0, 0.15, 0.00053]
 Kr = 1.4833*10^(-5)
 N = 1
 
+# looping through Q and store each value for each scenario with the min cost objective (each scenario gives X's
+
+
 epa_model = Model(HiGHS.Optimizer)
 
 # decision variable -> flowrates into each treatment method
 @variable(epa_model, X[1:3] >= 0)
-
-
 # objective
 @objective(epa_model, Min, sum(X.*cost))
 
 # identify constraints
 @constraint(epa_model, concentration, )
 @constraint(epa_model, flowrate, X[1] + X[2] + X[3] = Q)
-@constraint(epa_model, )
-
 ```
