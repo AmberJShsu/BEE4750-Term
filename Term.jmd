@@ -1,10 +1,12 @@
 ```julia
 using JuMP
 using HiGHS
+<<<<<<< HEAD
 using Plots
 gr()
 using DataFrames
 using Measures
+
 
 Q = []
 e = [0, 100, 87]
