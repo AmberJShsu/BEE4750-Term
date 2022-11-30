@@ -1,5 +1,12 @@
+```julia
+using JuMP
+using Cbc
+
+
 # identify decision variables
 
 # identify constraints
 
 # objective
+
+```
