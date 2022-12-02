@@ -7,24 +7,41 @@ using DataFrames
 using Measures
 
 
-Q = []
-e = [0, 100, 87]
-C = []
-cost = [0, 0.15, 0.00053]
-Kr = 1.4833*10^(-5)
-N = 1
+Q = []; #initial flowrate (L/min)
+C_0 = []; #initial arsenic concentration (mg/L)
+methods = ["none", "excavation", "in situ biological"]; #arsenic treatment methods
+e = [0, 100, 87]; #efficiency to methods (%)
+cost = [0, 0.15, 0.00053]; #cost of methods ($/L)
+Kf = 1.4833*10^(-5); #what is this variable called lol (g/g)
+N = 1; #what is this variable called lol
 
 # looping through Q and store each value for each scenario with the min cost objective (each scenario gives X's
 
+#SYSTEM 1: EPA Mode
 
 epa_model = Model(HiGHS.Optimizer)
 
 # decision variable -> flowrates into each treatment method
 @variable(epa_model, X[1:3] >= 0)
+
 # objective
 @objective(epa_model, Min, sum(X.*cost))
 
 # identify constraints
 @constraint(epa_model, concentration, )
 @constraint(epa_model, flowrate, X[1] + X[2] + X[3] = Q)
+
+
+
+#SYSTEM 2: FDA Model
+
+plants = ["rice", "ik something else yummy"]; #different plants 
+Ap = [0.85, ]; #absorbance coefficient of each plant
+
+fda_model = Model(HiGHS.Optimizer)
+# decision variable -> flowrates into each treatment method
+@variable(epa_model, X[1:3] >= 0)
+
+# objective
+
 ```
