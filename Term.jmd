@@ -9,6 +9,8 @@ using Measures
 
 Q = [500*3.785, 600*3.785, 700*3.785, 800*3.785, 900*3.785, 1000*3.785, 1100*3.785, 1200*3.785]; #initial flowrate (L/min)
 C_0 = [3.5/1000, 10/1000, 100/1000, 500/1000, 1, 1.5, 2]; #initial arsenic concentration (mg/L)
+#Q = 500*3.785
+#C_0 = 3.5/1000
 methods = ["none", "excavation", "in situ biological"]; #arsenic treatment methods
 J = 1:length(methods);
 e = [0, 100, 87]; #efficiency to methods (%)
@@ -29,8 +31,10 @@ for i in 1:7
         # objective
         @objective(epa_model, Min, sum(X.*cost));
         # identify constraints
-        @constraint(epa_model, concentration[j in J],  0.01 >= (1-Kf)* sum(C_0[n]*(1-e[j])*(X[j]/Q[i])));
-        @constraint(epa_model, flowrate[j in J], sum(X[j]) == Q[i]); 
+        @constraint(epa_model, concentration,  0.01 >= (1-Kf)*sum(C_0[n]*(1-e[J])*(X[J]/Q[i])));
+        @constraint(epa_model, flowrate, sum(X[J]) == Q[i]); 
+        #@constraint(epa_model, concentration[j in J],  0.01 >= (1-Kf)* sum(C_0*(1-e[j])*(X[j]/Q)));
+        #@constraint(epa_model, flowrate, sum(X[J]) == Q); 
         #run model
         optimize!(epa_model);
 
@@ -39,7 +43,7 @@ for i in 1:7
 end
 
 print(total_cost[i,n])
-min(total_cost)
+#min(total_cost)
 
 
 
