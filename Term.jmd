@@ -15,14 +15,13 @@ methods = ["none", "excavation", "in situ biological"]; #arsenic treatment metho
 J = 1:length(methods);
 e = [0, 100, 87]; #efficiency to methods (%)
 cost = [0, 0.15, 0.00053]; #cost of methods ($/L)
-Kf = 1.4833*10^(-5); #what is this variable called lol (g/g)
-N = 1; #what is this variable called lol
+Kf = 1.4833*10^(-5); #Freundlich constant (g/g)
+
+
+# SYSTEM 1: EPA Mode
+total_cost_epa = zeros(7,7);
 
 # looping through Q and store each value for each scenario with the min cost objective (each scenario gives X's
-
-#SYSTEM 1: EPA Mode
-total_cost = zeros(7,7);
-
 for i in 1:7
     for n in 1:7
         epa_model = Model(HiGHS.Optimizer)
@@ -38,30 +37,59 @@ for i in 1:7
         #run model
         optimize!(epa_model);
 
-        total_cost[i,n] = objective_value(epa_model);
+        total_cost_epa[i,n] = objective_value(epa_model);
     end
 end
 
-print(total_cost[i,n])
-#min(total_cost)
-
-
-
+print(total_cost_epa[i,n])
+#min(total_cost_epa)
 
 
 
 #SYSTEM 2: FDA Model
 
-#plants = ["rice", "ik something else yummy"]; #different plants 
-#Ap = [0.85, ]; #absorbance coefficient of each plant
+#Plant 1: Rice
+total_cost_rice = zeros(7,7);
 
-#fda_model = Model(HiGHS.Optimizer)
-# decision variable -> flowrates into each treatment method
-#@variable(epa_model, X[1:3] >= 0)
+for i in 1:7
+    for n in 1:7
+        fda_model_rice = Model(HiGHS.Optimizer)
+        # decision variable -> flowrates into each treatment method
+        @variable(fda_model_rice, X[J] >= 0);
+        # objective
+        @objective(fda_model_rice, Min, sum(X.*cost)+ SOMETHING); #WE NEED TO FIX COST
+        # identify constraints
+        @constraint(fda_model_rice, concentration,  0.1 >= 0.85*(1-Kf)*sum(C_0[n]*(1-e[J])*(X[J]/Q[i])));
+        @constraint(fda_model_rice, flowrate, sum(X[J]) == Q[i]); 
+        #run model
+        optimize!(fda_model_rice);
 
-# objective
+        total_cost_rice[i,n] = objective_value(fda_model_rice);
+    end
+end
 
+print(total_cost_rice[i,n])
 
-#function model(X) 
-    
+#Plant 2: Amaranth
+total_cost_am = zeros(7,7);
+
+for i in 1:7
+    for n in 1:7
+        fda_model_am = Model(HiGHS.Optimizer)
+        # decision variable -> flowrates into each treatment method
+        @variable(fda_model_am, X[J] >= 0);
+        # objective
+        @objective(fda_model_am, Min, sum(X.*cost)+ SOMETHING); #WE NEED TO FIX COST
+        # identify constraints
+        @constraint(fda_model_am, concentration,  0.1 >= 0.0022*(1-Kf)*sum(C_0[n]*(1-e[J])*(X[J]/Q[i])));
+        @constraint(fda_model_am, flowrate, sum(X[J]) == Q[i]); 
+        #run model
+        optimize!(fda_model_am);
+
+        total_cost_am[i,n] = objective_value(fda_model_am);
+    end
+end
+
+print(total_cost_am[i,n])
+
 ```
