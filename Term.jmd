@@ -30,7 +30,7 @@ for i in 1:7
         # objective
         @objective(epa_model, Min, sum(X.*cost));
         # identify constraints
-        @constraint(epa_model, concentration,  0.01 >= (1-Kf)*sum(C_0[n]*(1-e[J])*(X[J]/Q[i])));
+        @constraint(epa_model, concentration,  0.01 >= (1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X[J]/Q[i])));
         @constraint(epa_model, flowrate, sum(X[J]) == Q[i]); 
         #@constraint(epa_model, concentration[j in J],  0.01 >= (1-Kf)* sum(C_0*(1-e[j])*(X[j]/Q)));
         #@constraint(epa_model, flowrate, sum(X[J]) == Q); 
@@ -41,11 +41,11 @@ for i in 1:7
     end
 end
 
-print(total_cost_epa[i,n])
+print(total_cost_epa[:,:])
 #min(total_cost_epa)
 
 
-
+#=
 #SYSTEM 2: FDA Model
 
 #Plant 1: Rice
@@ -92,4 +92,5 @@ end
 
 print(total_cost_am[i,n])
 
+=#
 ```
