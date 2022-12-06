@@ -20,15 +20,14 @@ Kf = 1.4833*10^(-5); #Freundlich constant (g/g)
 
 # SYSTEM 1: EPA Mode
 total_cost_epa = zeros(7,7);
-
 # looping through Q and store each value for each scenario with the min cost objective (each scenario gives X's
 for i in 1:7
     for n in 1:7
-        epa_model = Model(HiGHS.Optimizer)
+        global epa_model = Model(HiGHS.Optimizer)
         # decision variable -> flowrates into each treatment method
         @variable(epa_model, X[J] >= 0);
         # objective
-        @objective(epa_model, Min, sum(X.*cost));
+        @objective(epa_model, Min, sum(X.*cost*60*24*90));
         # identify constraints
         @constraint(epa_model, concentration,  0.01 >= (1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X[J]/Q[i])));
         @constraint(epa_model, flowrate, sum(X[J]) == Q[i]); 
@@ -36,13 +35,30 @@ for i in 1:7
         #@constraint(epa_model, flowrate, sum(X[J]) == Q); 
         #run model
         optimize!(epa_model);
-
         total_cost_epa[i,n] = objective_value(epa_model);
+        
     end
 end
 
-print(total_cost_epa[:,:])
-#min(total_cost_epa)
+#print(total_cost_epa[:,:])
+minVal = Inf;
+#index for Q array
+q_index = 0;
+#index for C_0 array
+c_index = 0;
+
+for i in 1:7
+    for n in 1:7 
+        if total_cost_epa[i, n] > 0 && total_cost_epa[i, n] < minVal
+        global minVal = total_cost_epa[i, n];
+        global q_index = i;
+        global c_index = n;
+        end
+    end
+end
+
+#print(q_index, c_index)
+
 
 
 #=
