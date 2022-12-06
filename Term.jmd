@@ -20,7 +20,6 @@ Kf = 1.4833*10^(-5); #Freundlich constant (g/g)
 total_cost_epa = zeros(7,7);
 X_epa = zeros(7,7,3);
 
-# looping through Q and store each value for each scenario with the min cost objective (each scenario gives X's
 for i in 1:7
     for n in 1:7
         global epa_model = Model(HiGHS.Optimizer)
@@ -34,7 +33,7 @@ for i in 1:7
         #run model
         optimize!(epa_model);
         total_cost_epa[i,n] = objective_value(epa_model);
-        X_epa[i,n,:] = value.(X)
+        X_epa[i,n,:] = value.(X);
     end
 end
 
@@ -63,52 +62,96 @@ print(X_epa[q_index,c_index,:])
 
 
 
-#=
+
 #SYSTEM 2: FDA Model
 
 #Plant 1: Rice
 total_cost_rice = zeros(7,7);
+X_rice = zeros(7,7,3);
 
 for i in 1:7
     for n in 1:7
-        fda_model_rice = Model(HiGHS.Optimizer)
+        global fda_model_rice = Model(HiGHS.Optimizer)
         # decision variable -> flowrates into each treatment method
-        @variable(fda_model_rice, X[J] >= 0);
+        @variable(fda_model_rice, X_rice[J] >= 0);
         # objective
-        @objective(fda_model_rice, Min, sum(X.*cost)+ SOMETHING); #WE NEED TO FIX COST
+        @objective(fda_model_rice, Min, sum(X_rice.*cost*60*24*90) + 3.33*445);
         # identify constraints
-        @constraint(fda_model_rice, concentration,  0.1 >= 0.85*(1-Kf)*sum(C_0[n]*(1-e[J])*(X[J]/Q[i])));
-        @constraint(fda_model_rice, flowrate, sum(X[J]) == Q[i]); 
+        @constraint(fda_model_rice, concentration,  0.1 >= 0.85.*(1 .- Kf)*sum(C_0[n].*(1 .- e[J]).*(X_rice[J]/Q[i])));
+        @constraint(fda_model_rice, flowrate, sum(X_rice[J]) == Q[i]); 
         #run model
         optimize!(fda_model_rice);
 
         total_cost_rice[i,n] = objective_value(fda_model_rice);
+        X_rice[i,n,:] = value.(X_rice);
     end
 end
 
 print(total_cost_rice[i,n])
+print(X_rice[:,:,:])
+
+#Finding the min cost of all combinations of Q aand C_0
+minVal_rice = Inf;
+#index for Q array
+q_index_rice = 0;
+#index for C_0 array
+c_index_rice = 0;
+
+for i in 1:7
+    for n in 1:7 
+        if total_cost_rice[i, n] > 0 && total_cost_rice[i, n] < minVal_rice
+        global minVal_rice = total_cost_rice[i, n];
+        global q_index_rice = i;
+        global c_index_rice = n;
+        end
+    end
+end
+print(total_cost_rice[q_index_rice,c_index_rice])
+print(X_rice[q_index_rice,c_index_rice,:])
+
 
 #Plant 2: Amaranth
 total_cost_am = zeros(7,7);
+X_am = zeros(7,7,3);
 
 for i in 1:7
     for n in 1:7
-        fda_model_am = Model(HiGHS.Optimizer)
+        global fda_model_am = Model(HiGHS.Optimizer)
         # decision variable -> flowrates into each treatment method
-        @variable(fda_model_am, X[J] >= 0);
+        @variable(fda_model_am, X_am[J] >= 0);
         # objective
-        @objective(fda_model_am, Min, sum(X.*cost)+ SOMETHING); #WE NEED TO FIX COST
+        @objective(fda_model_am, Min, sum(X_am.*cost*60*24*90) + 100*445);
         # identify constraints
-        @constraint(fda_model_am, concentration,  0.1 >= 0.0022*(1-Kf)*sum(C_0[n]*(1-e[J])*(X[J]/Q[i])));
-        @constraint(fda_model_am, flowrate, sum(X[J]) == Q[i]); 
+        @constraint(fda_model_am, concentration,  0.1 >= 0.0022 .*(1 .- Kf)*sum(C_0[n].*(1 .- e[J]).*(X_am[J]/Q[i])));
+        @constraint(fda_model_am, flowrate, sum(X_am[J]) == Q[i]); 
         #run model
-        optimize!(fda_model_am);
+        optimize!(fda_model_am;
 
         total_cost_am[i,n] = objective_value(fda_model_am);
+        X_am[i,n,:] = value.(X_am);
     end
 end
 
 print(total_cost_am[i,n])
+print(X_am[:,:,:])
 
-=#
+#Finding the min cost of all combinations of Q aand C_0
+minVal_am = Inf;
+#index for Q array
+q_index_am = 0;
+#index for C_0 array
+c_index_am = 0;
+
+for i in 1:7
+    for n in 1:7 
+        if total_cost_am[i, n] > 0 && total_cost_am[i, n] < minVal_am
+        global minVal_am = total_cost_am[i, n];
+        global q_index_am = i;
+        global c_index_am = n;
+        end
+    end
+end
+print(total_cost_am[q_index_am,c_index_am])
+print(X_am[q_index_am,c_index_am,:])
+
 ```
