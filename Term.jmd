@@ -87,7 +87,7 @@ for i in 1:7
     end
 end
 
-print(total_cost_rice[i,n])
+print(total_cost_rice[:,:])
 print(X_rice[:,:,:])
 
 #Finding the min cost of all combinations of Q aand C_0
@@ -109,7 +109,7 @@ end
 print(total_cost_rice[q_index_rice,c_index_rice])
 print(X_rice[q_index_rice,c_index_rice,:])
 
-#=
+
 #Plant 2: Amaranth
 total_cost_am = zeros(7,7);
 X_am = zeros(7,7,3);
@@ -132,7 +132,7 @@ for i in 1:7
     end
 end
 
-print(total_cost_am[i,n])
+print(total_cost_am[:,:])
 print(X_am[:,:,:])
 
 #Finding the min cost of all combinations of Q aand C_0
@@ -153,5 +153,5 @@ for i in 1:7
 end
 print(total_cost_am[q_index_am,c_index_am])
 print(X_am[q_index_am,c_index_am,:])
-=#
+
 ```
