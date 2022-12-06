@@ -73,17 +73,17 @@ for i in 1:7
     for n in 1:7
         global fda_model_rice = Model(HiGHS.Optimizer)
         # decision variable -> flowrates into each treatment method
-        @variable(fda_model_rice, X_rice[J] >= 0);
+        @variable(fda_model_rice, X_r[J] >= 0);
         # objective
-        @objective(fda_model_rice, Min, sum(X_rice.*cost*60*24*90) + 3.33*445);
+        @objective(fda_model_rice, Min, sum(X_r.*cost*60*24*90) + 3.33*445);
         # identify constraints
-        @constraint(fda_model_rice, concentration,  0.1 >= 0.85.*(1 .- Kf)*sum(C_0[n].*(1 .- e[J]).*(X_rice[J]/Q[i])));
-        @constraint(fda_model_rice, flowrate, sum(X_rice[J]) == Q[i]); 
+        @constraint(fda_model_rice, concentration,  0.1 >= 0.85.*(1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X_r[J]/Q[i])));
+        @constraint(fda_model_rice, flowrate, sum(X_r[J]) == Q[i]); 
         #run model
         optimize!(fda_model_rice);
 
         total_cost_rice[i,n] = objective_value(fda_model_rice);
-        X_rice[i,n,:] = value.(X_rice);
+        X_rice[i,n,:] = value.(X_r);
     end
 end
 
@@ -109,7 +109,7 @@ end
 print(total_cost_rice[q_index_rice,c_index_rice])
 print(X_rice[q_index_rice,c_index_rice,:])
 
-
+#=
 #Plant 2: Amaranth
 total_cost_am = zeros(7,7);
 X_am = zeros(7,7,3);
@@ -118,17 +118,17 @@ for i in 1:7
     for n in 1:7
         global fda_model_am = Model(HiGHS.Optimizer)
         # decision variable -> flowrates into each treatment method
-        @variable(fda_model_am, X_am[J] >= 0);
+        @variable(fda_model_am, X_a[J] >= 0);
         # objective
-        @objective(fda_model_am, Min, sum(X_am.*cost*60*24*90) + 100*445);
+        @objective(fda_model_am, Min, sum(X_a.*cost*60*24*90) + 100*445);
         # identify constraints
-        @constraint(fda_model_am, concentration,  0.1 >= 0.0022 .*(1 .- Kf)*sum(C_0[n].*(1 .- e[J]).*(X_am[J]/Q[i])));
-        @constraint(fda_model_am, flowrate, sum(X_am[J]) == Q[i]); 
+        @constraint(fda_model_am, concentration,  0.1 >= 0.0022 .*(1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X_a[J]/Q[i])));
+        @constraint(fda_model_am, flowrate, sum(X_a[J]) == Q[i]); 
         #run model
-        optimize!(fda_model_am;
+        optimize!(fda_model_am);
 
         total_cost_am[i,n] = objective_value(fda_model_am);
-        X_am[i,n,:] = value.(X_am);
+        X_am[i,n,:] = value.(X_a);
     end
 end
 
@@ -153,5 +153,5 @@ for i in 1:7
 end
 print(total_cost_am[q_index_am,c_index_am])
 print(X_am[q_index_am,c_index_am,:])
-
+=#
 ```
