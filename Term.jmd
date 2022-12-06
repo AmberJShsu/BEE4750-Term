@@ -1,16 +1,14 @@
 ```julia
 using JuMP
 using HiGHS
-using Plots
-gr()
-using DataFrames
-using Measures
+#using Plots
+#gr()
+#using DataFrames
+#using Measures
 
 
 Q = [500*3.785, 600*3.785, 700*3.785, 800*3.785, 900*3.785, 1000*3.785, 1100*3.785, 1200*3.785]; #initial flowrate (L/min)
 C_0 = [3.5/1000, 10/1000, 100/1000, 500/1000, 1, 1.5, 2]; #initial arsenic concentration (mg/L)
-#Q = 500*3.785
-#C_0 = 3.5/1000
 methods = ["none", "excavation", "in situ biological"]; #arsenic treatment methods
 J = 1:length(methods);
 e = [0, 100, 87]; #efficiency to methods (%)
@@ -20,6 +18,8 @@ Kf = 1.4833*10^(-5); #Freundlich constant (g/g)
 
 # SYSTEM 1: EPA Mode
 total_cost_epa = zeros(7,7);
+X_epa = zeros(7,7,3);
+
 # looping through Q and store each value for each scenario with the min cost objective (each scenario gives X's
 for i in 1:7
     for n in 1:7
@@ -31,16 +31,17 @@ for i in 1:7
         # identify constraints
         @constraint(epa_model, concentration,  0.01 >= (1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X[J]/Q[i])));
         @constraint(epa_model, flowrate, sum(X[J]) == Q[i]); 
-        #@constraint(epa_model, concentration[j in J],  0.01 >= (1-Kf)* sum(C_0*(1-e[j])*(X[j]/Q)));
-        #@constraint(epa_model, flowrate, sum(X[J]) == Q); 
         #run model
         optimize!(epa_model);
         total_cost_epa[i,n] = objective_value(epa_model);
-        
+        X_epa[i,n,:] = value.(X)
     end
 end
 
-#print(total_cost_epa[:,:])
+print(total_cost_epa[:,:])
+print(X_epa[:,:,:])
+
+#Finding the min cost of all combinations of Q aand C_0
 minVal = Inf;
 #index for Q array
 q_index = 0;
@@ -56,8 +57,9 @@ for i in 1:7
         end
     end
 end
+print(total_cost_epa[q_index,c_index])
+print(X_epa[q_index,c_index,:])
 
-#print(q_index, c_index)
 
 
 
