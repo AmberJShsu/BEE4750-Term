@@ -1,12 +1,19 @@
-```julia
+---
+title: "BEE 4750 Term Project Supplement"
+authors: "Katrina Chen (kc778), Jing-Shan (Amber) Hsu (jh2226), Son-Jay Lake (svl24)"
+---
+```julia; echo = false; results = "hidden"
+using Pkg
+Pkg.activate(dirname(@__FILE__))
+Pkg.instantiate()
+
 using JuMP
 using HiGHS
-#using Plots
-#gr()
-#using DataFrames
-#using Measures
+using Plots
+```
 
-
+# Given information 
+```julia
 Q = [500*3.785, 600*3.785, 700*3.785, 800*3.785, 900*3.785, 1000*3.785, 1100*3.785, 1200*3.785]; #initial flowrate (L/min)
 C_0 = [3.5/1000, 10/1000, 100/1000, 500/1000, 1, 1.5, 2]; #initial arsenic concentration (mg/L)
 methods = ["none", "excavation", "in situ biological"]; #arsenic treatment methods
@@ -14,9 +21,12 @@ J = 1:length(methods);
 e = [0, 100, 87]; #efficiency to methods (%)
 cost = [0, 0.15, 0.00053]; #cost of methods ($/L)
 Kf = 1.4833*10^(-5); #Freundlich constant (g/g)
+```
 
+# System 1: EPA Drinking Water Regulation
 
-# SYSTEM 1: EPA Mode
+## Setting up model and determining minimum costs and flowrates into each treatment method
+```julia
 total_cost_epa = zeros(7,7);
 X_epa = zeros(7,7,3);
 
@@ -25,12 +35,12 @@ for i in 1:7
         global epa_model = Model(HiGHS.Optimizer)
         # decision variable -> flowrates into each treatment method
         @variable(epa_model, X[J] >= 0);
-        # objective
+        # objective to minimize cost of treatment
         @objective(epa_model, Min, sum(X.*cost*60*24*90));
-        # identify constraints
+        # identifying constraints
         @constraint(epa_model, concentration,  0.01 >= (1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X[J]/Q[i])));
         @constraint(epa_model, flowrate, sum(X[J]) == Q[i]); 
-        #run model
+        #running model
         optimize!(epa_model);
         total_cost_epa[i,n] = objective_value(epa_model);
         X_epa[i,n,:] = value.(X);
@@ -39,8 +49,10 @@ end
 
 print(total_cost_epa[:,:])
 print(X_epa[:,:,:])
+```
 
-#Finding the min cost of all combinations of Q aand C_0
+## Finding the min cost of all combinations of Q and C_0
+```julia 
 minVal = Inf;
 #index for Q array
 q_index = 0;
@@ -58,13 +70,13 @@ for i in 1:7
 end
 print(total_cost_epa[q_index,c_index])
 print(X_epa[q_index,c_index,:])
+```
 
 
+# System 2.1: FDA Food Regulation Using Rice
 
-
-
-#SYSTEM 2: FDA Model
-
+## Setting up model and determining minimum costs and flowrates into each treatment method
+```julia
 #Plant 1: Rice
 total_cost_rice = zeros(7,7);
 X_rice = zeros(7,7,3);
@@ -74,12 +86,12 @@ for i in 1:7
         global fda_model_rice = Model(HiGHS.Optimizer)
         # decision variable -> flowrates into each treatment method
         @variable(fda_model_rice, X_r[J] >= 0);
-        # objective
+        # objective to minimize cost of treatment
         @objective(fda_model_rice, Min, sum(X_r.*cost*60*24*90) + 3.33*445);
-        # identify constraints
+        # identifying constraints
         @constraint(fda_model_rice, concentration,  0.1 >= 0.85.*(1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X_r[J]/Q[i])));
         @constraint(fda_model_rice, flowrate, sum(X_r[J]) == Q[i]); 
-        #run model
+        #running model
         optimize!(fda_model_rice);
 
         total_cost_rice[i,n] = objective_value(fda_model_rice);
@@ -89,8 +101,10 @@ end
 
 print(total_cost_rice[:,:])
 print(X_rice[:,:,:])
+```
 
-#Finding the min cost of all combinations of Q aand C_0
+## Finding the min cost of all combinations of Q and C_0
+```julia
 minVal_rice = Inf;
 #index for Q array
 q_index_rice = 0;
@@ -108,8 +122,12 @@ for i in 1:7
 end
 print(total_cost_rice[q_index_rice,c_index_rice])
 print(X_rice[q_index_rice,c_index_rice,:])
+```
 
+# System 2.1: FDA Food Regulation Using Amaranth
 
+## Setting up model and determining minimum costs and flowrates into each treatment method
+```julia
 #Plant 2: Amaranth
 total_cost_am = zeros(7,7);
 X_am = zeros(7,7,3);
@@ -134,8 +152,10 @@ end
 
 print(total_cost_am[:,:])
 print(X_am[:,:,:])
+```
 
-#Finding the min cost of all combinations of Q aand C_0
+## Finding the min cost of all combinations of Q and C_0
+```julia
 minVal_am = Inf;
 #index for Q array
 q_index_am = 0;
@@ -151,7 +171,18 @@ for i in 1:7
         end
     end
 end
+
 print(total_cost_am[q_index_am,c_index_am])
 print(X_am[q_index_am,c_index_am,:])
+```
+
+# Plotting Cost vs Q
+```julia   
 
 ```
+
+# Plotting Cost vs C_0
+```julia   
+
+```
+
