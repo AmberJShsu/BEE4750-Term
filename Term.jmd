@@ -4,12 +4,13 @@ authors: "Katrina Chen (kc778), Jing-Shan (Amber) Hsu (jh2226), Son-Jay Lake (sv
 ---
 ```julia; echo = false; results = "hidden"
 using Pkg
-Pkg.activate(dirname(@__FILE__))
+Pkg.activate(".")
 Pkg.instantiate()
 
 using JuMP
 using HiGHS
 using Plots
+gr()
 ```
 
 # Given information 
