@@ -42,6 +42,7 @@ for i in 1:7
         @constraint(epa_model, concentration,  0.01 >= (1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X[J]/Q[i])));
         @constraint(epa_model, flowrate, sum(X[J]) == Q[i]); 
         #running model
+        set_silent(epa_model)
         optimize!(epa_model);
         total_cost_epa[i,n] = objective_value(epa_model);
         X_epa[i,n,:] = value.(X);
@@ -93,6 +94,7 @@ for i in 1:7
         @constraint(fda_model_rice, concentration,  0.1 >= 0.85.*(1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X_r[J]/Q[i])));
         @constraint(fda_model_rice, flowrate, sum(X_r[J]) == Q[i]); 
         #running model
+        set_silent(fda_model_rice)
         optimize!(fda_model_rice);
 
         total_cost_rice[i,n] = objective_value(fda_model_rice);
@@ -144,6 +146,7 @@ for i in 1:7
         @constraint(fda_model_am, concentration,  0.1 >= 0.0022 .*(1 .- Kf).*sum(C_0[n].*(1 .- e[J]).*(X_a[J]/Q[i])));
         @constraint(fda_model_am, flowrate, sum(X_a[J]) == Q[i]); 
         #run model
+        set_silent(fda_model_am)
         optimize!(fda_model_am);
 
         total_cost_am[i,n] = objective_value(fda_model_am);

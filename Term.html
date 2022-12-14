@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<HTML lang = "en">
+<HEAD>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>BEE 4750 Term Project Supplement</title>
+  
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+  </script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Menlo&family=Hind&family=Raleway&family=Yantramanav&display=swap');
+</style>
+
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+  
+<style>
+pre.hljl {
+    border: 1px solid #ccc;
+    margin: 5px;
+    padding: 5px;
+    overflow-x: auto;
+    color: rgb(68,68,68); background-color: rgb(251,251,251); }
+pre.hljl > span.hljl-t { }
+pre.hljl > span.hljl-w { }
+pre.hljl > span.hljl-e { }
+pre.hljl > span.hljl-eB { }
+pre.hljl > span.hljl-o { }
+pre.hljl > span.hljl-k { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kc { color: rgb(59,151,46); font-style: italic; }
+pre.hljl > span.hljl-kd { color: rgb(214,102,97); font-style: italic; }
+pre.hljl > span.hljl-kn { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kp { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kr { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-kt { color: rgb(148,91,176); font-weight: bold; }
+pre.hljl > span.hljl-n { }
+pre.hljl > span.hljl-na { }
+pre.hljl > span.hljl-nb { }
+pre.hljl > span.hljl-nbp { }
+pre.hljl > span.hljl-nc { }
+pre.hljl > span.hljl-ncB { }
+pre.hljl > span.hljl-nd { color: rgb(214,102,97); }
+pre.hljl > span.hljl-ne { }
+pre.hljl > span.hljl-neB { }
+pre.hljl > span.hljl-nf { color: rgb(66,102,213); }
+pre.hljl > span.hljl-nfm { color: rgb(66,102,213); }
+pre.hljl > span.hljl-np { }
+pre.hljl > span.hljl-nl { }
+pre.hljl > span.hljl-nn { }
+pre.hljl > span.hljl-no { }
+pre.hljl > span.hljl-nt { }
+pre.hljl > span.hljl-nv { }
+pre.hljl > span.hljl-nvc { }
+pre.hljl > span.hljl-nvg { }
+pre.hljl > span.hljl-nvi { }
+pre.hljl > span.hljl-nvm { }
+pre.hljl > span.hljl-l { }
+pre.hljl > span.hljl-ld { color: rgb(148,91,176); font-style: italic; }
+pre.hljl > span.hljl-s { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sa { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sb { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sc { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sd { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sdB { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sdC { color: rgb(201,61,57); }
+pre.hljl > span.hljl-se { color: rgb(59,151,46); }
+pre.hljl > span.hljl-sh { color: rgb(201,61,57); }
+pre.hljl > span.hljl-si { }
+pre.hljl > span.hljl-so { color: rgb(201,61,57); }
+pre.hljl > span.hljl-sr { color: rgb(201,61,57); }
+pre.hljl > span.hljl-ss { color: rgb(201,61,57); }
+pre.hljl > span.hljl-ssB { color: rgb(201,61,57); }
+pre.hljl > span.hljl-nB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nbB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nfB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nh { color: rgb(59,151,46); }
+pre.hljl > span.hljl-ni { color: rgb(59,151,46); }
+pre.hljl > span.hljl-nil { color: rgb(59,151,46); }
+pre.hljl > span.hljl-noB { color: rgb(59,151,46); }
+pre.hljl > span.hljl-oB { color: rgb(102,102,102); font-weight: bold; }
+pre.hljl > span.hljl-ow { color: rgb(102,102,102); font-weight: bold; }
+pre.hljl > span.hljl-p { }
+pre.hljl > span.hljl-c { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-ch { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cm { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cp { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cpB { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-cs { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-csB { color: rgb(153,153,119); font-style: italic; }
+pre.hljl > span.hljl-g { }
+pre.hljl > span.hljl-gd { }
+pre.hljl > span.hljl-ge { }
+pre.hljl > span.hljl-geB { }
+pre.hljl > span.hljl-gh { }
+pre.hljl > span.hljl-gi { }
+pre.hljl > span.hljl-go { }
+pre.hljl > span.hljl-gp { }
+pre.hljl > span.hljl-gs { }
+pre.hljl > span.hljl-gsB { }
+pre.hljl > span.hljl-gt { }
+</style>
+
+
+
+  <link rel="stylesheet" href="bee4750.css">
+</HEAD>
+
+<BODY>
+  <div class ="container">
+    <div class = "row">
+      <div class = "col-md-12 twelve columns">
+        <div class="title">
+          <h1 class="title">BEE 4750 Term Project Supplement</h1>
+          
+                  
+
+        </div>
+    <hr class="title">
+
+
+        
+<h1>Given information</h1>
+
+
+<pre class='hljl'>
+<span class='hljl-n'>Q</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-ni'>500</span><span class='hljl-oB'>*</span><span class='hljl-nfB'>3.785</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>600</span><span class='hljl-oB'>*</span><span class='hljl-nfB'>3.785</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>700</span><span class='hljl-oB'>*</span><span class='hljl-nfB'>3.785</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>800</span><span class='hljl-oB'>*</span><span class='hljl-nfB'>3.785</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>900</span><span class='hljl-oB'>*</span><span class='hljl-nfB'>3.785</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>1000</span><span class='hljl-oB'>*</span><span class='hljl-nfB'>3.785</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>1100</span><span class='hljl-oB'>*</span><span class='hljl-nfB'>3.785</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>1200</span><span class='hljl-oB'>*</span><span class='hljl-nfB'>3.785</span><span class='hljl-p'>];</span><span class='hljl-t'> </span><span class='hljl-cs'>#initial flowrate (L/min)</span><span class='hljl-t'>
+</span><span class='hljl-n'>C_0</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-nfB'>3.5</span><span class='hljl-oB'>/</span><span class='hljl-ni'>1000</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>10</span><span class='hljl-oB'>/</span><span class='hljl-ni'>1000</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>100</span><span class='hljl-oB'>/</span><span class='hljl-ni'>1000</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>500</span><span class='hljl-oB'>/</span><span class='hljl-ni'>1000</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>1.5</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>2</span><span class='hljl-p'>];</span><span class='hljl-t'> </span><span class='hljl-cs'>#initial arsenic concentration (mg/L)</span><span class='hljl-t'>
+</span><span class='hljl-n'>methods</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-s'>&quot;none&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;excavation&quot;</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-s'>&quot;in situ biological&quot;</span><span class='hljl-p'>];</span><span class='hljl-t'> </span><span class='hljl-cs'>#arsenic treatment methods</span><span class='hljl-t'>
+</span><span class='hljl-n'>J</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-nf'>length</span><span class='hljl-p'>(</span><span class='hljl-n'>methods</span><span class='hljl-p'>);</span><span class='hljl-t'>
+</span><span class='hljl-n'>e</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-ni'>0</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>100</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-ni'>87</span><span class='hljl-p'>];</span><span class='hljl-t'> </span><span class='hljl-cs'>#efficiency to methods (%)</span><span class='hljl-t'>
+</span><span class='hljl-n'>cost</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-p'>[</span><span class='hljl-ni'>0</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.15</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.00053</span><span class='hljl-p'>];</span><span class='hljl-t'> </span><span class='hljl-cs'>#cost of methods ($/L)</span><span class='hljl-t'>
+</span><span class='hljl-n'>Kf</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nfB'>1.4833</span><span class='hljl-oB'>*</span><span class='hljl-ni'>10</span><span class='hljl-oB'>^</span><span class='hljl-p'>(</span><span class='hljl-oB'>-</span><span class='hljl-ni'>5</span><span class='hljl-p'>);</span><span class='hljl-t'> </span><span class='hljl-cs'>#Freundlich constant (g/g)</span>
+</pre>
+
+
+
+<h1>System 1: EPA Drinking Water Regulation</h1>
+<h2>Setting up model and determining minimum costs and flowrates into each treatment method</h2>
+
+
+<pre class='hljl'>
+<span class='hljl-n'>total_cost_epa</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>zeros</span><span class='hljl-p'>(</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>7</span><span class='hljl-p'>);</span><span class='hljl-t'>
+</span><span class='hljl-n'>X_epa</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>zeros</span><span class='hljl-p'>(</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>3</span><span class='hljl-p'>);</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+    </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>epa_model</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Model</span><span class='hljl-p'>(</span><span class='hljl-n'>HiGHS</span><span class='hljl-oB'>.</span><span class='hljl-n'>Optimizer</span><span class='hljl-p'>)</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># decision variable -&gt; flowrates into each treatment method</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@variable</span><span class='hljl-p'>(</span><span class='hljl-n'>epa_model</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>X</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># objective to minimize cost of treatment</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@objective</span><span class='hljl-p'>(</span><span class='hljl-n'>epa_model</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>Min</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>X</span><span class='hljl-oB'>.*</span><span class='hljl-n'>cost</span><span class='hljl-oB'>*</span><span class='hljl-ni'>60</span><span class='hljl-oB'>*</span><span class='hljl-ni'>24</span><span class='hljl-oB'>*</span><span class='hljl-ni'>90</span><span class='hljl-p'>));</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># identifying constraints</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@constraint</span><span class='hljl-p'>(</span><span class='hljl-n'>epa_model</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>concentration</span><span class='hljl-p'>,</span><span class='hljl-t'>  </span><span class='hljl-nfB'>0.01</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;=</span><span class='hljl-t'> </span><span class='hljl-p'>(</span><span class='hljl-ni'>1</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-n'>Kf</span><span class='hljl-p'>)</span><span class='hljl-oB'>.*</span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>C_0</span><span class='hljl-p'>[</span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-oB'>.*</span><span class='hljl-p'>(</span><span class='hljl-ni'>1</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-n'>e</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>])</span><span class='hljl-oB'>.*</span><span class='hljl-p'>(</span><span class='hljl-n'>X</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>]</span><span class='hljl-oB'>/</span><span class='hljl-n'>Q</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>])));</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@constraint</span><span class='hljl-p'>(</span><span class='hljl-n'>epa_model</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>flowrate</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>X</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>])</span><span class='hljl-t'> </span><span class='hljl-oB'>==</span><span class='hljl-t'> </span><span class='hljl-n'>Q</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]);</span><span class='hljl-t'> 
+        </span><span class='hljl-cs'>#running model</span><span class='hljl-t'>
+        </span><span class='hljl-nf'>set_silent</span><span class='hljl-p'>(</span><span class='hljl-n'>epa_model</span><span class='hljl-p'>)</span><span class='hljl-t'>
+        </span><span class='hljl-nf'>optimize!</span><span class='hljl-p'>(</span><span class='hljl-n'>epa_model</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-n'>total_cost_epa</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>objective_value</span><span class='hljl-p'>(</span><span class='hljl-n'>epa_model</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-n'>X_epa</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-n'>n</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>value</span><span class='hljl-oB'>.</span><span class='hljl-p'>(</span><span class='hljl-n'>X</span><span class='hljl-p'>);</span><span class='hljl-t'>
+    </span><span class='hljl-k'>end</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>total_cost_epa</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span><span class='hljl-t'>
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>X_epa</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span>
+</pre>
+
+
+<pre class="output">
+&#91;0.0 0.0 1344.7430250568618 1464.2777084596482 1479.2195438849965 1484.2001
+556934456 1486.6904615976707; 0.0 0.0 1613.6916300682342 1757.1332501515778
+ 1775.0634526619958 1781.0401868321353 1784.0285539172048; 0.0 0.0 1882.640
+235079607 2049.988791843508 2070.9073614389954 2077.8802179708246 2081.3666
+46236739; 0.0 0.0 2151.588840090979 2342.8443335354373 2366.7512702159943 2
+374.7202491095136 2378.7047385562732; 0.0 0.0 2420.537445102351 2635.699875
+2273666 2662.595178992994 2671.560280248203 2676.042830875808; 0.0 0.0 2689
+.4860501137236 2928.5554169192965 2958.439087769993 2968.400311386891 2973.
+3809231953414; 0.0 0.0 2958.4346551250974 3221.410958611226 3254.2829965469
+923 3265.240342525581 3270.719015514876&#93;&#91;1892.5 1892.5 1872.9224460596195 1
+871.182190361349 1870.9646583990655 1870.8921477449708 1870.8558924179235; 
+2271.0 2271.0 2247.506935271543 2245.4186284336192 2245.1575900788785 2245.
+070577293965 2245.027070901508; 2649.5 2649.5 2622.091424483467 2619.655066
+505889 2619.3505217586917 2619.2490068429593 2619.198249385093; 3028.0 3028
+.0 2996.675913695391 2993.8915045781587 2993.5434534385045 2993.42743639195
+3 2993.3694278686776; 3406.5 3406.5 3371.260402907315 3368.1279426504284 33
+67.7363851183177 3367.6058659409473 3367.5406063522623; 3785.0 3785.0 3745.
+844892119239 3742.364380722698 3741.929316798131 3741.7842954899415 3741.71
+1784835847; 4163.5 4163.5 4120.429381331162 4116.600818794968 4116.12224847
+7944 4115.962725038936 4115.882963319432;;; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.
+0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0
+ 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0
+ 0.0 0.0 0.0 0.0 0.0;;; 0.0 0.0 19.577553940380586 21.31780963865083 21.535
+341600934608 21.607852255029197 21.6441075820765; 0.0 0.0 23.49306472845670
+5 25.581371566380994 25.842409921121533 25.929422706035044 25.9729290984918
+; 0.0 0.0 27.408575516532828 29.844933494111164 30.149478241308454 30.25099
+3157040888 30.301750614907103; 0.0 0.0 31.324086304608937 34.10849542184132
+6 34.45654656149537 34.57256360804673 34.6305721313224; 0.0 0.0 35.23959709
+268505 38.37205734957149 38.7636148816823 38.89413405905257 38.959393647737
+706; 0.0 0.0 39.15510788076117 42.63561927730166 43.070683201869215 43.2157
+04510058394 43.288215164153; 0.0 0.0 43.07061866883731 46.89918120503182 47
+.377751522056144 47.53727496106425 47.617036680568305&#93;
+</pre>
+
+
+<h2>Finding the min cost of all combinations of Q and C_0</h2>
+
+
+<pre class='hljl'>
+<span class='hljl-n'>minVal</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>Inf</span><span class='hljl-p'>;</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#index for Q array</span><span class='hljl-t'>
+</span><span class='hljl-n'>q_index</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>;</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#index for C_0 array</span><span class='hljl-t'>
+</span><span class='hljl-n'>c_index</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>;</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+    </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'> 
+        </span><span class='hljl-k'>if</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_epa</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-t'> </span><span class='hljl-oB'>&amp;&amp;</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_epa</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&lt;</span><span class='hljl-t'> </span><span class='hljl-n'>minVal</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>minVal</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_epa</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>];</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>q_index</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-p'>;</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>c_index</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>;</span><span class='hljl-t'>
+        </span><span class='hljl-k'>end</span><span class='hljl-t'>
+    </span><span class='hljl-k'>end</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>total_cost_epa</span><span class='hljl-p'>[</span><span class='hljl-n'>q_index</span><span class='hljl-p'>,</span><span class='hljl-n'>c_index</span><span class='hljl-p'>])</span><span class='hljl-t'>
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>X_epa</span><span class='hljl-p'>[</span><span class='hljl-n'>q_index</span><span class='hljl-p'>,</span><span class='hljl-n'>c_index</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span>
+</pre>
+
+
+<pre class="output">
+1344.7430250568618&#91;1872.9224460596195, 0.0, 19.577553940380586&#93;
+</pre>
+
+
+<h1>System 2.1: FDA Food Regulation Using Rice</h1>
+<h2>Setting up model and determining minimum costs and flowrates into each treatment method</h2>
+
+
+<pre class='hljl'>
+<span class='hljl-cs'>#Plant 1: Rice</span><span class='hljl-t'>
+</span><span class='hljl-n'>total_cost_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>zeros</span><span class='hljl-p'>(</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>7</span><span class='hljl-p'>);</span><span class='hljl-t'>
+</span><span class='hljl-n'>X_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>zeros</span><span class='hljl-p'>(</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>3</span><span class='hljl-p'>);</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+    </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>fda_model_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Model</span><span class='hljl-p'>(</span><span class='hljl-n'>HiGHS</span><span class='hljl-oB'>.</span><span class='hljl-n'>Optimizer</span><span class='hljl-p'>)</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># decision variable -&gt; flowrates into each treatment method</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@variable</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_rice</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>X_r</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># objective to minimize cost of treatment</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@objective</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_rice</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>Min</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>X_r</span><span class='hljl-oB'>.*</span><span class='hljl-n'>cost</span><span class='hljl-oB'>*</span><span class='hljl-ni'>60</span><span class='hljl-oB'>*</span><span class='hljl-ni'>24</span><span class='hljl-oB'>*</span><span class='hljl-ni'>90</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-oB'>+</span><span class='hljl-t'> </span><span class='hljl-nfB'>3.33</span><span class='hljl-oB'>*</span><span class='hljl-ni'>445</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># identifying constraints</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@constraint</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_rice</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>concentration</span><span class='hljl-p'>,</span><span class='hljl-t'>  </span><span class='hljl-nfB'>0.1</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.85</span><span class='hljl-oB'>.*</span><span class='hljl-p'>(</span><span class='hljl-ni'>1</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-n'>Kf</span><span class='hljl-p'>)</span><span class='hljl-oB'>.*</span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>C_0</span><span class='hljl-p'>[</span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-oB'>.*</span><span class='hljl-p'>(</span><span class='hljl-ni'>1</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-n'>e</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>])</span><span class='hljl-oB'>.*</span><span class='hljl-p'>(</span><span class='hljl-n'>X_r</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>]</span><span class='hljl-oB'>/</span><span class='hljl-n'>Q</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>])));</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@constraint</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_rice</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>flowrate</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>X_r</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>])</span><span class='hljl-t'> </span><span class='hljl-oB'>==</span><span class='hljl-t'> </span><span class='hljl-n'>Q</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]);</span><span class='hljl-t'> 
+        </span><span class='hljl-cs'>#running model</span><span class='hljl-t'>
+        </span><span class='hljl-nf'>set_silent</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_rice</span><span class='hljl-p'>)</span><span class='hljl-t'>
+        </span><span class='hljl-nf'>optimize!</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_rice</span><span class='hljl-p'>);</span><span class='hljl-t'>
+
+        </span><span class='hljl-n'>total_cost_rice</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>objective_value</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_rice</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-n'>X_rice</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-n'>n</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>value</span><span class='hljl-oB'>.</span><span class='hljl-p'>(</span><span class='hljl-n'>X_r</span><span class='hljl-p'>);</span><span class='hljl-t'>
+    </span><span class='hljl-k'>end</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>total_cost_rice</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span><span class='hljl-t'>
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>X_rice</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span>
+</pre>
+
+
+<pre class="output">
+&#91;1481.8500000000001 1481.8500000000001 1481.8500000000001 2624.438781066855
+ 2800.2250801886003 2858.8205132291814 2888.1182297494724; 1481.85000000000
+01 1481.8500000000001 1481.8500000000001 2852.9565372802263 3063.9000962263
+203 3134.214615875018 3169.371875699367; 1481.8500000000001 1481.8500000000
+001 1481.8500000000001 3081.4742934935975 3327.5751122640404 3409.608718520
+8544 3450.625521649262; 1481.8500000000001 1481.8500000000001 1481.85000000
+00001 3309.992049706968 3591.25012830176 3685.0028211666904 3731.8791675991
+56; 1481.8500000000001 1481.8500000000001 1481.8500000000001 3538.509805920
+339 3854.9251443394805 3960.3969238125273 4013.1328135490503; 1481.85000000
+00001 1481.8500000000001 1481.8500000000001 3767.0275621337096 4118.6001603
+772 4235.7910264583625 4294.3864594989445; 1481.8500000000001 1481.85000000
+00001 1481.8500000000001 3995.5453183470827 4382.275176414921 4511.18512910
+41985 4575.64010544884&#93;&#91;1892.5 1892.5 1892.5 1875.865525549341 1873.3063259
+930614 1872.4532594743014 1872.0267262149214; 2271.0 2271.0 2271.0 2251.038
+6306592095 2247.967591191674 2246.943911369162 2246.4320714579057; 2649.5 2
+649.5 2649.5 2626.2117357690777 2622.628856390286 2621.434563264022 2620.83
+741670089; 3028.0 3028.0 3028.0 3001.384840878946 2997.2901215888983 2995.9
+25215158882 2995.2427619438745; 3406.5 3406.5 3406.5 3376.557945988814 3371
+.9513867875103 3370.4158670537427 3369.648107186859; 3785.0 3785.0 3785.0 3
+751.731051098682 3746.6126519861227 3744.9065189486028 3744.0534524298428; 
+4163.5 4163.5 4163.5 4126.90415620855 4121.273917184735 4119.397170843463 4
+118.458797672827;;; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.
+0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.
+0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0;;; 
+0.0 0.0 0.0 16.634474450658846 19.19367400693862 20.046740525698535 20.4732
+73785078504; 0.0 0.0 0.0 19.96136934079062 23.03240880832635 24.05608863083
+825 24.567928542094208; 0.0 0.0 0.0 23.28826423092239 26.87114360971407 28.
+06543673597796 28.662583299109908; 0.0 0.0 0.0 26.615159121054155 30.709878
+41110179 32.07478484111767 32.75723805612561; 0.0 0.0 0.0 29.94205401118592
+7 34.54861321248952 36.08413294625738 36.85189281314131; 0.0 0.0 0.0 33.268
+94890131769 38.38734801387724 40.09348105139707 40.94654757015701; 0.0 0.0 
+0.0 36.59584379144948 42.226082815264974 44.102829156536785 45.041202327172
+72&#93;
+</pre>
+
+
+<h2>Finding the min cost of all combinations of Q and C_0</h2>
+
+
+<pre class='hljl'>
+<span class='hljl-n'>minVal_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>Inf</span><span class='hljl-p'>;</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#index for Q array</span><span class='hljl-t'>
+</span><span class='hljl-n'>q_index_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>;</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#index for C_0 array</span><span class='hljl-t'>
+</span><span class='hljl-n'>c_index_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>;</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+    </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'> 
+        </span><span class='hljl-k'>if</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_rice</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-t'> </span><span class='hljl-oB'>&amp;&amp;</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_rice</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&lt;</span><span class='hljl-t'> </span><span class='hljl-n'>minVal_rice</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>minVal_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_rice</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>];</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>q_index_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-p'>;</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>c_index_rice</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>;</span><span class='hljl-t'>
+        </span><span class='hljl-k'>end</span><span class='hljl-t'>
+    </span><span class='hljl-k'>end</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>total_cost_rice</span><span class='hljl-p'>[</span><span class='hljl-n'>q_index_rice</span><span class='hljl-p'>,</span><span class='hljl-n'>c_index_rice</span><span class='hljl-p'>])</span><span class='hljl-t'>
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>X_rice</span><span class='hljl-p'>[</span><span class='hljl-n'>q_index_rice</span><span class='hljl-p'>,</span><span class='hljl-n'>c_index_rice</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span>
+</pre>
+
+
+<pre class="output">
+1481.8500000000001&#91;1892.5, 0.0, 0.0&#93;
+</pre>
+
+
+<h1>System 2.1: FDA Food Regulation Using Amaranth</h1>
+<h2>Setting up model and determining minimum costs and flowrates into each treatment method</h2>
+
+
+<pre class='hljl'>
+<span class='hljl-cs'>#Plant 2: Amaranth</span><span class='hljl-t'>
+</span><span class='hljl-n'>total_cost_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>zeros</span><span class='hljl-p'>(</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>7</span><span class='hljl-p'>);</span><span class='hljl-t'>
+</span><span class='hljl-n'>X_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>zeros</span><span class='hljl-p'>(</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>7</span><span class='hljl-p'>,</span><span class='hljl-ni'>3</span><span class='hljl-p'>);</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+    </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>fda_model_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>Model</span><span class='hljl-p'>(</span><span class='hljl-n'>HiGHS</span><span class='hljl-oB'>.</span><span class='hljl-n'>Optimizer</span><span class='hljl-p'>)</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># decision variable -&gt; flowrates into each treatment method</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@variable</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_am</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>X_a</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># objective</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@objective</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_am</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>Min</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>X_a</span><span class='hljl-oB'>.*</span><span class='hljl-n'>cost</span><span class='hljl-oB'>*</span><span class='hljl-ni'>60</span><span class='hljl-oB'>*</span><span class='hljl-ni'>24</span><span class='hljl-oB'>*</span><span class='hljl-ni'>90</span><span class='hljl-p'>)</span><span class='hljl-t'> </span><span class='hljl-oB'>+</span><span class='hljl-t'> </span><span class='hljl-ni'>100</span><span class='hljl-oB'>*</span><span class='hljl-ni'>445</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-cs'># identify constraints</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@constraint</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_am</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>concentration</span><span class='hljl-p'>,</span><span class='hljl-t'>  </span><span class='hljl-nfB'>0.1</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;=</span><span class='hljl-t'> </span><span class='hljl-nfB'>0.0022</span><span class='hljl-t'> </span><span class='hljl-oB'>.*</span><span class='hljl-p'>(</span><span class='hljl-ni'>1</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-n'>Kf</span><span class='hljl-p'>)</span><span class='hljl-oB'>.*</span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>C_0</span><span class='hljl-p'>[</span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-oB'>.*</span><span class='hljl-p'>(</span><span class='hljl-ni'>1</span><span class='hljl-t'> </span><span class='hljl-oB'>.-</span><span class='hljl-t'> </span><span class='hljl-n'>e</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>])</span><span class='hljl-oB'>.*</span><span class='hljl-p'>(</span><span class='hljl-n'>X_a</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>]</span><span class='hljl-oB'>/</span><span class='hljl-n'>Q</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>])));</span><span class='hljl-t'>
+        </span><span class='hljl-nd'>@constraint</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_am</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>flowrate</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-nf'>sum</span><span class='hljl-p'>(</span><span class='hljl-n'>X_a</span><span class='hljl-p'>[</span><span class='hljl-n'>J</span><span class='hljl-p'>])</span><span class='hljl-t'> </span><span class='hljl-oB'>==</span><span class='hljl-t'> </span><span class='hljl-n'>Q</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>]);</span><span class='hljl-t'> 
+        </span><span class='hljl-cs'>#run model</span><span class='hljl-t'>
+        </span><span class='hljl-nf'>set_silent</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_am</span><span class='hljl-p'>)</span><span class='hljl-t'>
+        </span><span class='hljl-nf'>optimize!</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_am</span><span class='hljl-p'>);</span><span class='hljl-t'>
+
+        </span><span class='hljl-n'>total_cost_am</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-nf'>objective_value</span><span class='hljl-p'>(</span><span class='hljl-n'>fda_model_am</span><span class='hljl-p'>);</span><span class='hljl-t'>
+        </span><span class='hljl-n'>X_am</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-n'>n</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>value</span><span class='hljl-oB'>.</span><span class='hljl-p'>(</span><span class='hljl-n'>X_a</span><span class='hljl-p'>);</span><span class='hljl-t'>
+    </span><span class='hljl-k'>end</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>total_cost_am</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span><span class='hljl-t'>
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>X_am</span><span class='hljl-p'>[</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span>
+</pre>
+
+
+<pre class="output">
+&#91;44500.0 44500.0 44500.0 44500.0 44500.0 44500.0 44500.0; 44500.0 44500.0 4
+4500.0 44500.0 44500.0 44500.0 44500.0; 44500.0 44500.0 44500.0 44500.0 445
+00.0 44500.0 44500.0; 44500.0 44500.0 44500.0 44500.0 44500.0 44500.0 44500
+.0; 44500.0 44500.0 44500.0 44500.0 44500.0 44500.0 44500.0; 44500.0 44500.
+0 44500.0 44500.0 44500.0 44500.0 44500.0; 44500.0 44500.0 44500.0 44500.0 
+44500.0 44500.0 44500.0&#93;&#91;1892.5 1892.5 1892.5 1892.5 1892.5 1892.5 1892.5; 
+2271.0 2271.0 2271.0 2271.0 2271.0 2271.0 2271.0; 2649.5 2649.5 2649.5 2649
+.5 2649.5 2649.5 2649.5; 3028.0 3028.0 3028.0 3028.0 3028.0 3028.0 3028.0; 
+3406.5 3406.5 3406.5 3406.5 3406.5 3406.5 3406.5; 3785.0 3785.0 3785.0 3785
+.0 3785.0 3785.0 3785.0; 4163.5 4163.5 4163.5 4163.5 4163.5 4163.5 4163.5;;
+; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0
+ 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0
+ 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0;;; 0.0 0.0 0.0 0.0 0.
+0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.
+0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0; 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.0; 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#93;
+</pre>
+
+
+<h2>Finding the min cost of all combinations of Q and C_0</h2>
+
+
+<pre class='hljl'>
+<span class='hljl-n'>minVal_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>Inf</span><span class='hljl-p'>;</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#index for Q array</span><span class='hljl-t'>
+</span><span class='hljl-n'>q_index_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>;</span><span class='hljl-t'>
+</span><span class='hljl-cs'>#index for C_0 array</span><span class='hljl-t'>
+</span><span class='hljl-n'>c_index_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-p'>;</span><span class='hljl-t'>
+
+</span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'>
+    </span><span class='hljl-k'>for</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-t'> </span><span class='hljl-kp'>in</span><span class='hljl-t'> </span><span class='hljl-ni'>1</span><span class='hljl-oB'>:</span><span class='hljl-ni'>7</span><span class='hljl-t'> 
+        </span><span class='hljl-k'>if</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_am</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&gt;</span><span class='hljl-t'> </span><span class='hljl-ni'>0</span><span class='hljl-t'> </span><span class='hljl-oB'>&amp;&amp;</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_am</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>]</span><span class='hljl-t'> </span><span class='hljl-oB'>&lt;</span><span class='hljl-t'> </span><span class='hljl-n'>minVal_am</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>minVal_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>total_cost_am</span><span class='hljl-p'>[</span><span class='hljl-n'>i</span><span class='hljl-p'>,</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>];</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>q_index_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>i</span><span class='hljl-p'>;</span><span class='hljl-t'>
+        </span><span class='hljl-kd'>global</span><span class='hljl-t'> </span><span class='hljl-n'>c_index_am</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-n'>n</span><span class='hljl-p'>;</span><span class='hljl-t'>
+        </span><span class='hljl-k'>end</span><span class='hljl-t'>
+    </span><span class='hljl-k'>end</span><span class='hljl-t'>
+</span><span class='hljl-k'>end</span><span class='hljl-t'>
+
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>total_cost_am</span><span class='hljl-p'>[</span><span class='hljl-n'>q_index_am</span><span class='hljl-p'>,</span><span class='hljl-n'>c_index_am</span><span class='hljl-p'>])</span><span class='hljl-t'>
+</span><span class='hljl-nf'>print</span><span class='hljl-p'>(</span><span class='hljl-n'>X_am</span><span class='hljl-p'>[</span><span class='hljl-n'>q_index_am</span><span class='hljl-p'>,</span><span class='hljl-n'>c_index_am</span><span class='hljl-p'>,</span><span class='hljl-oB'>:</span><span class='hljl-p'>])</span>
+</pre>
+
+
+<pre class="output">
+44500.0&#91;1892.5, 0.0, 0.0&#93;
+</pre>
+
+
+<h1>Plotting Cost vs Q</h1>
+
+
+<pre class='hljl'>
+
+</pre>
+
+
+
+<h1>Plotting Cost vs C_0</h1>
+
+
+<pre class='hljl'>
+
+</pre>
+
+
+
+
+    <hr class="title">
+      </div>
+    </div>
+  </div>
+</BODY>
+
+</HTML>
