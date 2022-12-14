@@ -15,7 +15,7 @@ gr()
 
 # Given information 
 ```julia
-Q = [500*3.785, 600*3.785, 700*3.785, 800*3.785, 900*3.785, 1000*3.785, 1100*3.785, 1200*3.785]; #initial flowrate (L/min)
+Q = [500*3.785, 600*3.785, 700*3.785, 800*3.785, 900*3.785, 1000*3.785, 1100*3.785]; #initial flowrate (L/min)
 C_0 = [3.5/1000, 10/1000, 100/1000, 500/1000, 1, 1.5, 2]; #initial arsenic concentration (mg/L)
 methods = ["none", "excavation", "in situ biological"]; #arsenic treatment methods
 J = 1:length(methods);
@@ -49,8 +49,8 @@ for i in 1:7
     end
 end
 
-print(total_cost_epa[:,:])
-print(X_epa[:,:,:])
+println(total_cost_epa[:,:])
+println(X_epa[:,:,:])
 ```
 
 ## Finding the min cost of all combinations of Q and C_0
@@ -70,8 +70,8 @@ for i in 1:7
         end
     end
 end
-print(total_cost_epa[q_index,c_index])
-print(X_epa[q_index,c_index,:])
+println(total_cost_epa[q_index,c_index])
+println(X_epa[q_index,c_index,:])
 ```
 
 
@@ -102,8 +102,8 @@ for i in 1:7
     end
 end
 
-print(total_cost_rice[:,:])
-print(X_rice[:,:,:])
+println(total_cost_rice[:,:])
+println(X_rice[:,:,:])
 ```
 
 ## Finding the min cost of all combinations of Q and C_0
@@ -123,8 +123,8 @@ for i in 1:7
         end
     end
 end
-print(total_cost_rice[q_index_rice,c_index_rice])
-print(X_rice[q_index_rice,c_index_rice,:])
+println(total_cost_rice[q_index_rice,c_index_rice])
+println(X_rice[q_index_rice,c_index_rice,:])
 ```
 
 # System 2.1: FDA Food Regulation Using Amaranth
@@ -154,8 +154,8 @@ for i in 1:7
     end
 end
 
-print(total_cost_am[:,:])
-print(X_am[:,:,:])
+println(total_cost_am[:,:])
+println(X_am[:,:,:])
 ```
 
 ## Finding the min cost of all combinations of Q and C_0
@@ -176,17 +176,36 @@ for i in 1:7
     end
 end
 
-print(total_cost_am[q_index_am,c_index_am])
-print(X_am[q_index_am,c_index_am,:])
+println(total_cost_am[q_index_am,c_index_am])
+println(X_am[q_index_am,c_index_am,:])
 ```
 
-# Plotting Cost vs Q
+# Plotting Cost vs Q*C_0
 ```julia   
+# multiplying Q and C_0 to get mg/min
+mg_min = zeros(49); 
+m = 1;
 
-```
+for c in 1:7
+    for q in 1:7
+            mg_min[m] = Q[q] .* C_0[c]
+            global m += 1
+    end
+end
 
-# Plotting Cost vs C_0
-```julia   
+x = vec(mg_min[:,:]);
 
+# reformatting total_cost_epa
+epa = vec(total_cost_epa);
+
+# reformatting total_cost_rice
+fda_rice = vec(total_cost_rice);
+
+# reformatting total_cost_am
+fda_amaranth = vec(total_cost_am);
+
+# Plotting Costs vs Q*C_0
+plot(x, [epa fda_rice fda_amaranth], label=["epa" "fda rice" "fda amaranth"], xlabel = "Q*C_0 (mg/min)", 
+        ylabel = "Cost (dollars/90 days)", linewidth=2)
 ```
 
